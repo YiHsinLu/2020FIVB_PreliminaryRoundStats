@@ -101,6 +101,8 @@ visualtsneFIVB = transform(visualtsneFIVB, V1 = as.numeric(V1), V2 = as.numeric(
 
 plot_ly(visualtsneFIVB, x = ~V1, y = ~V2, color = plr_info$Position, text = best_WS_data$Name)
 
+
+FIVBplot_DataPosition = plot_ly(visualtsneFIVB, x = ~V1, y = ~V2, color = plr_info$Position, text = best_WS_data$Name)
 ```
 
 #Attack
