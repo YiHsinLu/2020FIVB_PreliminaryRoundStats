@@ -2,7 +2,7 @@
 The data is from Kaggle and the statistics for the preliminary round of 2020 FIVB (Fédération Internationale de Volleyball). Then I want to know more about the relationship between players and their information or statistics.
 
 ## Team Japan
-My favorate team in FIVB.
+My favorite team in FIVB.
 
 ![](https://asianvolleyball.net/new/wp-content/uploads/2023/07/aaaa.jpeg)
 [image from](https://asianvolleyball.net/new/japan-beat-world-champions-italy-and-make-it-to-the-vnl-podium/)
@@ -12,17 +12,32 @@ My favorate team in FIVB.
 * [Kaggle: FIBV - 2020 - Statistics - Preliminary Round](https://www.kaggle.com/datasets/victorvincifantucci/fibv-2020-statistics-preliminary-round/data)
 * Latest FIBV statistics about the international volleyball scenario.
 
-However, the problem is that we only have the statistics of players' behavior, and the dataset didn't store the personal information of players such as position, height, weight, etc. 
+****
+
+* You can also download this repository and then read the `.csv` file I cleaned on Rstudio.
+
+```{r}
+read.csv("DataFrame/Players_stats2020.csv")
+```
+
+However, the problem is that we only have the statistics of players' behavior, and the dataset doesn't store the personal information of players such as position, height, weight, etc. 
 
 ****
 
 ### VolleyBox
 * [VolleyBox](https://volleybox.net/)
-* Volleyball players Facebook, social media.
-* but no "API"
-* difficulty: we couldn't use the name of players to find the their page on VolleyBox.
+  + Players' personal information
+  + You can also download this repository and then read the `.csv` file I cleaned on Rstudio.
 
-#### 1. Use Google search engine to collect their url 
+```{r}
+read.csv("DataFrame/Player_infoVolleybox2023.csv")
+```
+
+* Volleyball players' Facebook, and social media.
+* but no "API"
+* difficulty: we couldn't use the names of players to find their page on VolleyBox.
+
+#### 1. Use the Google search engine to collect their URL 
 ```{r}
 plr = #players name 
 url = paste0("https://www.google.com/search?q=Volleybox+", gsub(" ", "+", plr))
@@ -38,7 +53,7 @@ plr_link = link_volbox
 
 ```
 #### 2. Collect their info.
-The point is that you need to find the position of information on the webpage. (press `F12` to check the html) In my project, the position, height, weight, birth, spike, block, and dominant hand is in `<dd class='info-data marginBottom10  '>`, so I use Xpath to find them.
+The point is that you need to find the information position on the webpage. (press `F12` to check the HTML) In my project, the position, height, weight, birth, spike, block, and dominant hand is in `<dd class='info-data marginBottom10  '>`, so I use Xpath to find them.
 ```{r}
 page = read_html(plr_link)
 
@@ -47,12 +62,12 @@ player_info = page %>%
   html_text()
 ```
 
-However, if you want to collect many page just like me, then you must **be careful** about the time between two `read_html`. If you connect the url too many times, the webpage server will block you out and your code will return "Error in open.connection(x, "rb") : HTTP error 429." I utilize `Sys.sleep` function to control the times between the connections.
+However, if you want to collect many pages just like me, then you must **be careful** about the time between two `read_html`. If you connect the url too many times, the webpage server will block you out and your code will return "Error in open.connection(x, "rb") : HTTP error 429." I utilize `Sys.sleep` function to control the times between the connections.
 
 ```{r}
 Sys.sleep(1) #pause for 1 second
 ```
-And I use random variable for the time.
+And I use random variables for the time.
 ```{r}
 Sys.sleep(runif(1,5,15))
 ```
