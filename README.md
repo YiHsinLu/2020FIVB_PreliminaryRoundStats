@@ -7,8 +7,8 @@ My favorite team in FIVB.
 ![](https://asianvolleyball.net/new/wp-content/uploads/2023/07/aaaa.jpeg)
 [image from](https://asianvolleyball.net/new/japan-beat-world-champions-italy-and-make-it-to-the-vnl-podium/)
 
-## Data
-### Kaggle
+## 1 Data
+### 1.1 Kaggle
 * [Kaggle: FIBV - 2020 - Statistics - Preliminary Round](https://www.kaggle.com/datasets/victorvincifantucci/fibv-2020-statistics-preliminary-round/data)
 * Latest FIBV statistics about the international volleyball scenario.
 
@@ -24,7 +24,7 @@ However, the problem is that we only have the statistics of players' behavior, a
 
 ****
 
-### VolleyBox
+### 1.2 VolleyBox
 * [VolleyBox](https://volleybox.net/)
   + Players' personal information
   + You can also download this repository and then read the `.csv` file I cleaned on Rstudio.
@@ -37,7 +37,7 @@ read.csv("DataFrame/Player_infoVolleybox2023.csv")
 * but no "API"
 * difficulty: we couldn't use the names of players to find their page on VolleyBox.
 
-#### 1. Use the Google search engine to collect their URL 
+#### Step1. Use the Google search engine to collect their URL 
 ```{r}
 plr = #players name 
 url = paste0("https://www.google.com/search?q=Volleybox+", gsub(" ", "+", plr))
@@ -52,7 +52,7 @@ link_volbox = Filter(function(u) any(grepl("https://volleybox.net/",u), grepl("-
 plr_link = link_volbox
 
 ```
-#### 2. Collect their info.
+#### Step2. Collect their info.
 The point is that you need to find the information position on the webpage. (press `F12` to check the HTML) In my project, the position, height, weight, birth, spike, block, and dominant hand is in `<dd class='info-data marginBottom10  '>`, so I use Xpath to find them.
 ```{r}
 page = read_html(plr_link)
