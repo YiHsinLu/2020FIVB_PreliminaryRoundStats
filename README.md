@@ -11,9 +11,6 @@ My favorite team in FIVB.
 ### 1.1 Kaggle
 * [Kaggle: FIBV - 2020 - Statistics - Preliminary Round](https://www.kaggle.com/datasets/victorvincifantucci/fibv-2020-statistics-preliminary-round/data)
 * Latest FIBV statistics about the international volleyball scenario.
-
-****
-
 * You can also download this repository and then read the `.csv` file I cleaned on Rstudio.
 
 ```{r}
@@ -28,14 +25,13 @@ However, the problem is that we only have the statistics of players' behavior, a
 * [VolleyBox](https://volleybox.net/)
   + Players' personal information
   + You can also download this repository and then read the `.csv` file I cleaned on Rstudio.
+* Volleyball players' Facebook, and social media.
+* but no "API"
+* difficulty: we couldn't use the names of players to find their page on VolleyBox.
 
 ```{r}
 read.csv("DataFrame/Player_infoVolleybox2023.csv")
 ```
-
-* Volleyball players' Facebook, and social media.
-* but no "API"
-* difficulty: we couldn't use the names of players to find their page on VolleyBox.
 
 #### Step1. Use the Google search engine to collect their URL 
 ```{r}
