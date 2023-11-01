@@ -28,6 +28,7 @@ However, the problem is that we only have the statistics of players' behavior, a
 * Volleyball players' Facebook, and social media.
 * but no "API"
 * difficulty: we couldn't use the names of players to find their page on VolleyBox.
+  For instance, we want Yuji Nishida's page but the URL of his page is not "https://volleybox.net/yuji-nishida". Therefore, we searched "Yuji Nishida" on VolleyBox, and the URL of his page is "https://volleybox.net/yuji-nishida-p11693". Therefore, that is a problem for connecting to the URL of players by their name.
 
 ```{r}
 read.csv("DataFrame/Player_infoVolleybox2023.csv")
