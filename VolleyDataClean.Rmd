@@ -3,6 +3,8 @@ library(dplyr)
 library(tidyverse)
 library(Rtsne)
 library(plotly)
+
+
 ```
 
 ```{r}
@@ -68,6 +70,14 @@ check_more_id = as.vector(check_more_id)
 
 
 best_WS_data = best_WS_data[-c(251:260),]
+```
+
+```{r}
+write.csv(best_WS_data,"DataFrame/Players_stats2020.csv", 
+          row.names = FALSE)
+write.csv(cbind(data.frame(Name = best_WS_data$Name, ShirtNumber = best_WS_data$ShirtNumber, Team = best_WS_data$Team),plr_info), 
+          "DataFrame/Player_infoVolleybox2023.csv",
+          row.names = FALSE)
 ```
 
 ```{r}
