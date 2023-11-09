@@ -75,7 +75,7 @@ best_WS_data = best_WS_data[-c(251:260),]
 ```{r}
 write.csv(best_WS_data,"DataFrame/Players_stats2020.csv", 
           row.names = FALSE)
-write.csv(cbind(data.frame(Name = best_WS_data$Name, ShirtNumber = best_WS_data$ShirtNumber, Team = best_WS_data$Team),plr_info), 
+write.csv(plr_info, 
           "DataFrame/Player_infoVolleybox2023.csv",
           row.names = FALSE)
 ```
@@ -120,4 +120,57 @@ FIVBplot_DataPosition = plot_ly(visualtsneFIVB, x = ~V1, y = ~V2, color = plr_in
 ```{r}
 best_WS$attack %>% mutate(percentage = round(Shots/Spikes, digits = 2))
 
+```
+
+## Data cleaning for players info.
+
+```{r}
+for(i in 1:224){
+  for(j in 2:6){
+    if(grepl("Right", plr_info[i,j])==TRUE){
+      plr_info[i,7] = "Right"
+      plr_info[i,j] = 0
+    }else if(grepl("Left", plr_info[i,j])==TRUE){
+      plr_info[i,7] = "Left"
+      plr_info[i,j] = 0
+    }
+  }
+}
+
+for(i in 1:224){
+  for(j in 2:6){
+    if(plr_info[i,j]==0){
+      for(k in j:6){
+        plr_info[i,k]=0
+      }
+    }
+  }
+}
+for(i in 1:224){
+    if(grepl("Right", plr_info[i,7])==FALSE&&grepl("Left", plr_info[i,7])==FALSE){
+      plr_info[i,7]=NA
+    }
+}
+
+plr_info = transform(plr_info, Birth = as.Date(Birth), 
+          Height = as.numeric(gsub("cm", "", Height)), 
+          Weight = as.numeric(gsub("kg", "", Weight)),
+          Spike = as.numeric(gsub("cm", "", Spike)),
+          Block = as.numeric(gsub("cm", "", Block)))
+
+plr_info
+```
+
+## Players' age
+
+```{r}
+library("lubridate")
+library(dplyr)
+floor(time_length(difftime("2023-11-09", "1996-03-20"), "years"))
+
+
+plr_info = plr_info %>% 
+  mutate(Ages = floor(time_length(difftime("2023-11-09", Birth), "years")), .after = Birth)
+
+plr_info = cbind(data.frame(Name = best_WS_data$Name, ShirtNumber = best_WS_data$ShirtNumber, Team = best_WS_data$Team), plr_info)
 ```
