@@ -70,3 +70,8 @@ And I use random variables for the time.
 Sys.sleep(runif(1,5,15))
 ```
 
+## 2 Visualization
+
+### 2.1 [Color by positions](https://yihsinlu.github.io/yhlu.io/FIVB/FIVB2020_DataVisualization.html)
+
+
